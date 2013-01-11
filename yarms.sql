@@ -1,6 +1,5 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE employees (key INTEGER PRIMARY KEY, id TEXT, name TEXT, title TEXT);
 CREATE TABLE comments (key INTEGER PRIMARY KEY, category_id NUMERIC, comment TEXT);
 CREATE TABLE categories (key INTEGER PRIMARY KEY, text TEXT);
 INSERT INTO "categories" VALUES(1,'In your opinion, in what ways does the employee excel?');
@@ -10,4 +9,5 @@ INSERT INTO "categories" VALUES(4,'How well does the employee execute their job 
 INSERT INTO "categories" VALUES(5,'Please provide at least one area in which the employee need further improvement.');
 INSERT INTO "categories" VALUES(6,'Do you have any other comments or other input not incorporated in the above questions?');
 CREATE TABLE feedback (date NUMERIC, key INTEGER PRIMARY KEY, provider_key NUMERIC, target_key NUMERIC, comment_key NUMERIC);
+CREATE TABLE employees (supervisor_key NUMERIC, key INTEGER PRIMARY KEY, id TEXT, name TEXT, title TEXT);
 COMMIT;
