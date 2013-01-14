@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 2em;
+    font-family: Lucida Sans,Lucida Grande,Arial !important;
+    font-size: 13px !important;
+    background: white;
+    color: #333;
+}
+
+h1 {font-size:2.0em; font-weight:bold}
+html, body {height:100%; margin:0; overflow:hidden; padding:0;}
+
+/* Main window layout */
+#appLayout   {height:900px; width:800px; margin:10px; border:2px solid; border-radius:4px; box-shadow: 10px 10px 5px #888888; background:#eeeeee}
+
+#headerPanel {height:50px; margin:10px; }
+#feedbackPanel {height:600px; }
+
+#evaluationIdInfo {height:100px; margin:10px; }
+#employeeInfo {height:100%; width:50%; float:left; }
+#reviewerInfo {height:100%; width:50%; float:left; }
+
+.infoTitle {height: 20px; width:100%; text-align:center; font-weight:bold; font-size: 15px;}
+.infoLabel {height: 20px; width:100px; text-align:right; font-weight:bold; float:left}
+.infoElement {height: 20px; width:275px; float:left}
+
+.feedbackLabel {height: 20px; margin-top:20px; text-sub; width:100%; font-weight:bold; }
+.feedbackInputPanel {height: 70px; width:100%; font-weight:bold; margin-left:20px; }
+.feedbackInput {height: 70px; width:95%; }
