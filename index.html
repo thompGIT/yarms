@@ -27,11 +27,24 @@
 </head>
 
 <body class="claro">
-    <h1>Employee Peer Evaluation</h1>
-    <table border='0' width='90%'>
-        <tr>
-            <td>Name:</td>
-            <td>
+
+    <!-- Application Layout -->
+    <div id="appLayout"
+        data-dojo-type="dijit.layout.BorderContainer" 
+        data-dojo-props="design: 'headline'" 
+        gutters="false">
+
+    <!-- Page Header -->
+    <div id="headerPanel" data-dojo-props="region: 'top'">
+        <h1>Employee Peer Evaluation</h1>
+    <div>
+
+    <!-- Employee / Reviewer Information -->
+    <div id='evaluationIdInfo'>
+        <div id='employeeInfo'>
+            <div class='infoTitle'>Employee Under Evaluation</div>
+            <div class='infoLabel'>Name:</div>
+            <div class='infoElement'>
                 <select name='target' id='target'
                     dojoType='dijit.form.FilteringSelect'>
                         <option value=''></option>
@@ -39,11 +52,9 @@
                         <option value='George Washington'>George Washington</option>
                         <option value='John Adams'>John Adams</option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Title:</td>
-            <td>
+            </div>
+            <div class='infoLabel'>Title:</div>
+            <div class='infoElement'>
                 <select name='target_title' id='target_title'
                     dojoType='dijit.form.FilteringSelect'>
                         <option value=''></option>
@@ -53,11 +64,9 @@
                         <option value='E04'>E04</option>
                         <option value='E05'>E05</option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Supervisor:</td>
-            <td>
+            </div>
+            <div class='infoLabel'>Supervisor:</div>
+            <div class='infoElement'>
                 <select name='employee' id='employee'
                     dojoType='dijit.form.FilteringSelect'>
                         <option value=''></option>
@@ -65,7 +74,83 @@
                         <option value='George Washington'>George Washington</option>
                         <option value='John Adams'>John Adams</option>
                 </select>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+        <div id='reviewerInfo'>
+            <div class='infoTitle'>Employee Providing Feedback</div>
+            <div class='infoLabel'>Name:</div>
+            <div class='infoElement'>
+                <select name='target' id='target'
+                    dojoType='dijit.form.FilteringSelect'>
+                        <option value=''></option>
+                        <option value='Abe Lincoln'>Abe Lincoln</option>
+                        <option value='George Washington'>George Washington</option>
+                        <option value='John Adams'>John Adams</option>
+                </select>
+            </div>
+            <div class='infoLabel'>Title:</div>
+            <div class='infoElement'>
+                <select name='target_title' id='target_title'
+                    dojoType='dijit.form.FilteringSelect'>
+                        <option value=''></option>
+                        <option value='E01'>E01</option>
+                        <option value='E02'>E02</option>
+                        <option value='E03'>E03</option>
+                        <option value='E04'>E04</option>
+                        <option value='E05'>E05</option>
+                </select>
+            </div>
+            <div class='infoLabel'>Supervisor:</div>
+            <div class='infoElement'>
+                <select name='employee' id='employee'
+                    dojoType='dijit.form.FilteringSelect'>
+                        <option value=''></option>
+                        <option value='Abe Lincoln'>Abe Lincoln</option>
+                        <option value='George Washington'>George Washington</option>
+                        <option value='John Adams'>John Adams</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Questions -->
+    <div id='feedbackPanel'>
+        <div class='feedbackLabel'>In your opinion, in what ways does the employee excel?</div>
+        <div class='feedbackInputPanel'>
+            <textarea class='feedbackInput'
+                data-dojo-type='dijit.form.SimpleTextarea'>
+            </textarea>
+        </div>
+        <div class='feedbackLabel'>In what ways has the employee gone above and beyond their     regular call of duty?</div>
+        <div class='feedbackInputPanel'>
+            <textarea class='feedbackInput'
+                data-dojo-type='dijit.form.SimpleTextarea'>
+            </textarea>
+        </div>
+        <div class='feedbackLabel'>Please comment     on the employee's attitude and the overall experience of working with them.</div>
+        <div class='feedbackInputPanel'>
+            <textarea class='feedbackInput'
+                data-dojo-type='dijit.form.SimpleTextarea'>
+            </textarea>
+        </div>
+        <div class='feedbackLabel'>How well does the employee execute their job function?</div>
+        <div class='feedbackInputPanel'>
+            <textarea class='feedbackInput'
+                data-dojo-type='dijit.form.SimpleTextarea'>
+            </textarea>
+        </div>
+        <div class='feedbackLabel'>Please provide at least one ar    ea in which the employee need further improvement.</div>
+        <div class='feedbackInputPanel'>
+            <textarea class='feedbackInput'
+                data-dojo-type='dijit.form.SimpleTextarea'>
+            </textarea>
+        </div>
+        <div class='feedbackLabel'>Do you have any other comments or other input not incorporated in the above questions?</div>
+        <div class='feedbackInputPanel'>
+            <textarea class='feedbackInput'
+                data-dojo-type='dijit.form.SimpleTextarea'>
+            </textarea>
+        </div>
+    </div>
+
 </body>
