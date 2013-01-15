@@ -1,0 +1,5 @@
+# To dump a database
+echo '.dump' | sqlite3 yarms.db > yarms.sql
+
+# To restore a database
+cat yarms.sql | sqlite3 yarms.db
