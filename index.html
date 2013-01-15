@@ -17,12 +17,39 @@
     <script type="text/javascript" src="./dojobase/dojo/dojo.js"
         data-dojo-config="parseOnLoad: true">
     </script>
-
+    
+    <!-- required: yarms functions -->
+    <script type="text/javascript" src="./js/yarms.js"></script>
     <script type="text/javascript">
         dojo.require("dojo.parser");
         dojo.require("dijit.dijit");
-        dojo.require("dijit.form.FilteringSelect");
+        dojo.require("dijit.layout.BorderContainer");
+        dojo.require("dijit.layout.TabContainer");
+        dojo.require("dijit.layout.ContentPane");
+        dojo.require("dijit.layout.LinkPane");
+        dojo.require("dijit.form.ValidationTextBox");
+        dojo.require("dijit.form.SimpleTextarea");
+        dojo.require("dojox.timing._base");
+        dojo.require("dojox.grid.DataGrid");
+        dojo.require("dojo.data.ItemFileWriteStore");
+        dojo.require("dojox.data.KeyValueStore");
+        dojo.require("dojox.charting.Chart2D");
+        dojo.require("dojox.charting.themes.ThreeD");
+        dojo.require("dijit.MenuBar");
+        dojo.require("dijit.PopupMenuBarItem");
+        dojo.require("dijit.DropDownMenu");
+        dojo.require("dijit.MenuItem");
+        dojo.require("dijit.form.MultiSelect");
+        dojo.require("dijit.form.Select");
+        dojo.require("dijit.form.NumberSpinner");
+        dojo.require("dojox.form.BusyButton");
+        dojo.require("dojo.fx.easing");
+        dojo.require("dojox.layout.ContentPane");
     </script>
+
+    <!-- Other javascript -->
+    <script type="text/javascript" src="./js/feedbackform.js"></script>
+
 
 </head>
 
@@ -45,12 +72,8 @@
             <div class='infoTitle'>Employee Under Evaluation</div>
             <div class='infoLabel'>Name:</div>
             <div class='infoElement'>
-                <select name='target' id='target'
-                    dojoType='dijit.form.FilteringSelect'>
-                        <option value=''></option>
-                        <option value='Abe Lincoln'>Abe Lincoln</option>
-                        <option value='George Washington'>George Washington</option>
-                        <option value='John Adams'>John Adams</option>
+                <select name='target' id='target' dojoType='dijit.form.FilteringSelect'>
+                    <!-- populated by js -->
                 </select>
             </div>
             <div class='infoLabel'>Title:</div>
@@ -67,7 +90,7 @@
             </div>
             <div class='infoLabel'>Supervisor:</div>
             <div class='infoElement'>
-                <select name='employee' id='employee'
+                <select name='target_super' id='target_super'
                     dojoType='dijit.form.FilteringSelect'>
                         <option value=''></option>
                         <option value='Abe Lincoln'>Abe Lincoln</option>
@@ -80,7 +103,7 @@
             <div class='infoTitle'>Employee Providing Feedback</div>
             <div class='infoLabel'>Name:</div>
             <div class='infoElement'>
-                <select name='target' id='target'
+                <select name='reviewer' id='reviewer'
                     dojoType='dijit.form.FilteringSelect'>
                         <option value=''></option>
                         <option value='Abe Lincoln'>Abe Lincoln</option>
@@ -90,7 +113,7 @@
             </div>
             <div class='infoLabel'>Title:</div>
             <div class='infoElement'>
-                <select name='target_title' id='target_title'
+                <select name='reviewer_title' id='reviewer_title'
                     dojoType='dijit.form.FilteringSelect'>
                         <option value=''></option>
                         <option value='E01'>E01</option>
@@ -102,7 +125,7 @@
             </div>
             <div class='infoLabel'>Supervisor:</div>
             <div class='infoElement'>
-                <select name='employee' id='employee'
+                <select name='reviewer_super' id='reviewer_super'
                     dojoType='dijit.form.FilteringSelect'>
                         <option value=''></option>
                         <option value='Abe Lincoln'>Abe Lincoln</option>
