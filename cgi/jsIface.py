@@ -31,4 +31,5 @@ op = ''
 if 'op' in form:
     op = form['op'].value
 
-if op == 'sampleCmd':  db.sampleCmd()
+# Commands received via cgi
+if op == 'getEmployeeNames':  db.getEmployeeNames()

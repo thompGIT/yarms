@@ -18,7 +18,14 @@ num_args = len(sys.argv)
 if not ((num_args == 2) or (num_args == 3)): 
     print 'Usage: ' + str(sys.argv[0]) + ' <command> [parameter]'
     print ' Commands: genEmployees [count]'
+    print '           getEmployeeNames'
     sys.exit(1)
+
+if sys.argv[1] == 'getEmployeeNames':
+    if num_args != 2:
+        print 'Usage: ' + str(sys.argv[0]) 
+        sys.exit(1)
+    db.getEmployeeNames()
 
 if sys.argv[1] == 'genEmployees':
     if num_args != 3:

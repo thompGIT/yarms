@@ -1,6 +1,5 @@
 #------------------------------------------------------------------------------
 # DbSqlite.py
-# Bugrack database module that uses SQLite for storage.
 #------------------------------------------------------------------------------
 
 import sqlite3
@@ -18,6 +17,14 @@ class DbSqlite():
     def addEmployee(self, name, empId, title, supervisor):
         self.c.execute('INSERT into employees (name,id,title,supervisor_key) VALUES (?,?,?,?)', (name,empId,title,supervisor))
         self.conn.commit()
+
+    def getEmployeeNames(self):
+        self.c.execute('SELECT name from employees order by name;')
+        result = ''
+        for x in self.c.fetchall():
+            result += str(x[0]) + '\n'
+        result = result[:-1]
+        print result
     
     #--------------------------------------------------------------------------
     # setup
