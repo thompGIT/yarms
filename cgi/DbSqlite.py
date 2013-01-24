@@ -25,13 +25,17 @@ class DbSqlite():
             result += str(x[0]) + '\n'
         result = result[:-1]
         print result
+                
+    def getELevel(self,employee):
+        self.c.execute('SELECT title from employees where name=?', (name,))
+        print self.c.fetchone()[0]        
     
     #--------------------------------------------------------------------------
     # setup
     #--------------------------------------------------------------------------
     def __init__(self, path):
 
-        print 'Attaching to database at [' + path + ']'
+#        print 'Attaching to database at [' + path + ']'
 
         # Connect to the database (assumes it already exists!)
         if ( os.path.exists(path) ):

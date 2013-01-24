@@ -23,7 +23,7 @@ if ('HTTP_HOST' in os.environ) and (os.environ['HTTP_HOST'] == 'localhost'):
 
 print "Content-Type: text/html\x0d\x0a\x0d\x0a",
 
-db    = DbSqlite.DbSqlite('yarm.db')
+db    = DbSqlite.DbSqlite('yarms.db')
 form  = cgi.FieldStorage()
 
 # Read in the request type...
@@ -33,3 +33,4 @@ if 'op' in form:
 
 # Commands received via cgi
 if op == 'getEmployeeNames':  db.getEmployeeNames()
+if op == 'getELevel':         db.getELevel(form['name'].value)
