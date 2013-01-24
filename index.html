@@ -22,6 +22,8 @@
     <script type="text/javascript" src="./js/yarms.js"></script>
     <script type="text/javascript">
         dojo.require("dojo.parser");
+        dojo.require("dojo.data.ItemFileWriteStore");
+        dojo.require("dojo.fx.easing");
         dojo.require("dijit.dijit");
         dojo.require("dijit.layout.BorderContainer");
         dojo.require("dijit.layout.TabContainer");
@@ -29,27 +31,22 @@
         dojo.require("dijit.layout.LinkPane");
         dojo.require("dijit.form.ValidationTextBox");
         dojo.require("dijit.form.SimpleTextarea");
-        dojo.require("dojox.timing._base");
-        dojo.require("dojox.grid.DataGrid");
-        dojo.require("dojo.data.ItemFileWriteStore");
-        dojo.require("dojox.data.KeyValueStore");
-        dojo.require("dojox.charting.Chart2D");
-        dojo.require("dojox.charting.themes.ThreeD");
         dojo.require("dijit.MenuBar");
         dojo.require("dijit.PopupMenuBarItem");
         dojo.require("dijit.DropDownMenu");
         dojo.require("dijit.MenuItem");
         dojo.require("dijit.form.MultiSelect");
+        dojo.require("dijit.form.FilteringSelect");
         dojo.require("dijit.form.Select");
         dojo.require("dijit.form.NumberSpinner");
+        dojo.require("dojox.timing._base");
+        dojo.require("dojox.grid.DataGrid");
+        dojo.require("dojox.data.KeyValueStore");
+        dojo.require("dojox.charting.Chart2D");
+        dojo.require("dojox.charting.themes.ThreeD");
         dojo.require("dojox.form.BusyButton");
-        dojo.require("dojo.fx.easing");
         dojo.require("dojox.layout.ContentPane");
     </script>
-
-    <!-- Other javascript -->
-    <script type="text/javascript" src="./js/feedbackform.js"></script>
-
 
 </head>
 
@@ -60,120 +57,114 @@
         data-dojo-type="dijit.layout.BorderContainer" 
         data-dojo-props="design: 'headline'" 
         gutters="false">
+        
+        <!-- Page Header -->
+        <div id="headerPanel" data-dojo-props="region: 'top'">
+            <h1>Employee Peer Evaluation</h1>
+        <div>
 
-    <!-- Page Header -->
-    <div id="headerPanel" data-dojo-props="region: 'top'">
-        <h1>Employee Peer Evaluation</h1>
-    <div>
+        <!-- Employee / Reviewer Information -->
+        <div id='evaluationIdInfo' data-dojo-props="region: 'center'">
+            <div id='employeeInfo'>
+                <div class='infoTitle'>Employee Under Evaluation</div>
+                <label class='infoLabel' for='target_select'>Name:</label>
+                <input class='infoElement' id='target_select' />
+                <!--
+                <label class='infoLabel' for='target_title'>Title:</div>
+                <div class='infoElement'>
+                    <select name='target_title' id='target_title'
+                        dojoType='dijit.form.FilteringSelect'>
+                            <option value=''></option>
+                            <option value='E01'>E01</option>
+                            <option value='E02'>E02</option>
+                            <option value='E03'>E03</option>
+                            <option value='E04'>E04</option>
+                            <option value='E05'>E05</option>
+                    </select>
+                </div>
+                <div class='infoLabel'>Supervisor:</div>
+                <div class='infoElement'>
+                    <select name='target_super' id='target_super'
+                        dojoType='dijit.form.FilteringSelect'>
+                            <option value=''></option>
+                            <option value='Abe Lincoln'>Abe Lincoln</option>
+                            <option value='George Washington'>George Washington</option>
+                            <option value='John Adams'>John Adams</option>
+                    </select>
+                -->
+                </div>
+            </div>
+            
+            <!--
+            <div id='reviewerInfo'>
+                <div class='infoTitle'>Employee Providing Feedback</div>
+                <div class='infoLabel'>Name:</div>
+                <div class='infoElement'>
+                    <select name='reviewer' id='reviewer'
+                        dojoType='dijit.form.FilteringSelect'>
+                            <option value=''></option>
+                            <option value='Abe Lincoln'>Abe Lincoln</option>
+                            <option value='George Washington'>George Washington</option>
+                            <option value='John Adams'>John Adams</option>
+                    </select>
+                </div>
+                <div class='infoLabel'>Title:</div>
+                <div class='infoElement'>
+                    <select name='reviewer_title' id='reviewer_title'
+                        dojoType='dijit.form.FilteringSelect'>
+                            <option value=''></option>
+                            <option value='E01'>E01</option>
+                            <option value='E02'>E02</option>
+                            <option value='E03'>E03</option>
+                            <option value='E04'>E04</option>
+                            <option value='E05'>E05</option>
+                    </select>
+                </div>
+                <div class='infoLabel'>Supervisor:</div>
+                <div class='infoElement'>
+                    <select name='reviewer_super' id='reviewer_super'
+                        dojoType='dijit.form.FilteringSelect'>
+                            <option value=''></option>
+                            <option value='Abe Lincoln'>Abe Lincoln</option>
+                            <option value='George Washington'>George Washington</option>
+                            <option value='John Adams'>John Adams</option>
+                    </select>
+                </div>
+            </div>
+            <-->
+        </div>
 
-    <!-- Employee / Reviewer Information -->
-    <div id='evaluationIdInfo'>
-        <div id='employeeInfo'>
-            <div class='infoTitle'>Employee Under Evaluation</div>
-            <div class='infoLabel'>Name:</div>
-            <div class='infoElement'>
-                <select name='target' id='target' dojoType='dijit.form.FilteringSelect'>
-                    <!-- populated by js -->
-                </select>
+        <!-- Feedback Questions - ->
+        <div id='feedbackPanel' data-dojo-props="region: 'center'">
+            <div class='feedbackLabel'>In your opinion, in what ways does the employee excel?</div>
+            <div class='feedbackInputPanel'>
+                <textarea class='feedbackInput' data-dojo-type='dijit.form.SimpleTextarea'></textarea>
             </div>
-            <div class='infoLabel'>Title:</div>
-            <div class='infoElement'>
-                <select name='target_title' id='target_title'
-                    dojoType='dijit.form.FilteringSelect'>
-                        <option value=''></option>
-                        <option value='E01'>E01</option>
-                        <option value='E02'>E02</option>
-                        <option value='E03'>E03</option>
-                        <option value='E04'>E04</option>
-                        <option value='E05'>E05</option>
-                </select>
+            <div class='feedbackLabel'>In what ways has the employee gone above and beyond their     regular call of duty?</div>
+            <div class='feedbackInputPanel'>
+                <textarea class='feedbackInput' data-dojo-type='dijit.form.SimpleTextarea'></textarea>
             </div>
-            <div class='infoLabel'>Supervisor:</div>
-            <div class='infoElement'>
-                <select name='target_super' id='target_super'
-                    dojoType='dijit.form.FilteringSelect'>
-                        <option value=''></option>
-                        <option value='Abe Lincoln'>Abe Lincoln</option>
-                        <option value='George Washington'>George Washington</option>
-                        <option value='John Adams'>John Adams</option>
-                </select>
+            <div class='feedbackLabel'>Please comment     on the employee's attitude and the overall experience of working with them.</div>
+            <div class='feedbackInputPanel'>
+                <textarea class='feedbackInput' data-dojo-type='dijit.form.SimpleTextarea'></textarea>
+                </textarea>
+            </div>
+            <div class='feedbackLabel'>How well does the employee execute their job function?</div>
+            <div class='feedbackInputPanel'>
+                <textarea class='feedbackInput' data-dojo-type='dijit.form.SimpleTextarea'></textarea>
+            </div>
+            <div class='feedbackLabel'>Please provide at least one ar    ea in which the employee need further improvement.</div>
+            <div class='feedbackInputPanel'>
+                <textarea class='feedbackInput'
+                    data-dojo-type='dijit.form.SimpleTextarea'>
+                </textarea>
+            </div>
+            <div class='feedbackLabel'>Do you have any other comments or other input not incorporated in the above questions?</div>
+            <div class='feedbackInputPanel'>
+                <textarea class='feedbackInput' data-dojo-type='dijit.form.SimpleTextarea'></textarea>
             </div>
         </div>
-        <div id='reviewerInfo'>
-            <div class='infoTitle'>Employee Providing Feedback</div>
-            <div class='infoLabel'>Name:</div>
-            <div class='infoElement'>
-                <select name='reviewer' id='reviewer'
-                    dojoType='dijit.form.FilteringSelect'>
-                        <option value=''></option>
-                        <option value='Abe Lincoln'>Abe Lincoln</option>
-                        <option value='George Washington'>George Washington</option>
-                        <option value='John Adams'>John Adams</option>
-                </select>
-            </div>
-            <div class='infoLabel'>Title:</div>
-            <div class='infoElement'>
-                <select name='reviewer_title' id='reviewer_title'
-                    dojoType='dijit.form.FilteringSelect'>
-                        <option value=''></option>
-                        <option value='E01'>E01</option>
-                        <option value='E02'>E02</option>
-                        <option value='E03'>E03</option>
-                        <option value='E04'>E04</option>
-                        <option value='E05'>E05</option>
-                </select>
-            </div>
-            <div class='infoLabel'>Supervisor:</div>
-            <div class='infoElement'>
-                <select name='reviewer_super' id='reviewer_super'
-                    dojoType='dijit.form.FilteringSelect'>
-                        <option value=''></option>
-                        <option value='Abe Lincoln'>Abe Lincoln</option>
-                        <option value='George Washington'>George Washington</option>
-                        <option value='John Adams'>John Adams</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <!-- Feedback Questions -->
-    <div id='feedbackPanel'>
-        <div class='feedbackLabel'>In your opinion, in what ways does the employee excel?</div>
-        <div class='feedbackInputPanel'>
-            <textarea class='feedbackInput'
-                data-dojo-type='dijit.form.SimpleTextarea'>
-            </textarea>
-        </div>
-        <div class='feedbackLabel'>In what ways has the employee gone above and beyond their     regular call of duty?</div>
-        <div class='feedbackInputPanel'>
-            <textarea class='feedbackInput'
-                data-dojo-type='dijit.form.SimpleTextarea'>
-            </textarea>
-        </div>
-        <div class='feedbackLabel'>Please comment     on the employee's attitude and the overall experience of working with them.</div>
-        <div class='feedbackInputPanel'>
-            <textarea class='feedbackInput'
-                data-dojo-type='dijit.form.SimpleTextarea'>
-            </textarea>
-        </div>
-        <div class='feedbackLabel'>How well does the employee execute their job function?</div>
-        <div class='feedbackInputPanel'>
-            <textarea class='feedbackInput'
-                data-dojo-type='dijit.form.SimpleTextarea'>
-            </textarea>
-        </div>
-        <div class='feedbackLabel'>Please provide at least one ar    ea in which the employee need further improvement.</div>
-        <div class='feedbackInputPanel'>
-            <textarea class='feedbackInput'
-                data-dojo-type='dijit.form.SimpleTextarea'>
-            </textarea>
-        </div>
-        <div class='feedbackLabel'>Do you have any other comments or other input not incorporated in the above questions?</div>
-        <div class='feedbackInputPanel'>
-            <textarea class='feedbackInput'
-                data-dojo-type='dijit.form.SimpleTextarea'>
-            </textarea>
-        </div>
+        -->
     </div>
 
 </body>
