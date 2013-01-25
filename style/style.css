@@ -17,12 +17,12 @@ html, body {height:100%; margin:0; overflow:hidden; padding:0;}
 #feedbackPanel {height:600px; }
 
 #evaluationIdInfo {height:100px; margin:10px; }
-#employeeInfo {height:100%; width:50%; float:left; }
+#employeeInfo {height:100%; width:50%; float:left;}
 #reviewerInfo {height:100%; width:50%; float:left; }
 
-.infoTitle {height: 20px; width:100%; text-align:center; font-weight:bold; font-size: 15px;}
-.infoLabel {height: 20px; width:100px; text-align:right; font-weight:bold; float:left}
-.infoElement {height: 20px; width:275px; float:left}
+.infoTitle   {height: 20px; width:100%;  text-align:center; font-weight:bold; font-size: 15px;}
+.infoLabel   {height: 20px; width:100px; text-align:right;  font-weight:bold; float:left;}
+.infoElement {height: 20px; width:275px; float:left;}
 
 .feedbackLabel {height: 20px; margin-top:20px; text-sub; width:100%; font-weight:bold; }
 .feedbackInputPanel {height: 70px; width:100%; font-weight:bold; margin-left:20px; }
