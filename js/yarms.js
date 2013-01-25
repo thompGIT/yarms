@@ -35,6 +35,7 @@ require(["dojo/ready",
     ready(function() {
         BuildDataStores();
         InitEmployeeSelector();
+        InitializeEvents();
     });
     
     //-- Build Data Stores
@@ -61,8 +62,19 @@ require(["dojo/ready",
         var s = new dijit.form.FilteringSelect({
             store: DataStore_Employees
         }, "target_select");
-        s.startup();
-    };
+        s.startup();                
+    }
+    
+    //-- Update the table with live information from the database
+    function InitializeEvents() {            
+        dojo.connect(dijit.byId("target_select"),"onChange",function(){
+            var x = dijit.byId("target_select");
+            var resp = ajax('./cgi/jsIface.py?op=getELevel&name=' + x.getDisplayedValue());
+            if (resp != '\n') {   
+                dojo.byId("target_title").innerHTML = resp;
+            }
+        })
+    }
     
 });
 
