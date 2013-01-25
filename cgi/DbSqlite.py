@@ -27,7 +27,7 @@ class DbSqlite():
         print result
                 
     def getELevel(self,employee):
-        self.c.execute('SELECT title from employees where name=?', (name,))
+        self.c.execute('SELECT title from employees where name=?', (employee,))
         print self.c.fetchone()[0]        
     
     #--------------------------------------------------------------------------
