@@ -28,14 +28,15 @@ require(["dojo/ready",
          "dojo/data/ItemFileReadStore",
          "dojox/data/KeyValueStore", 
          "dojox/grid/DataGrid", 
-         "dijit/form/FilteringSelect"
-], function (ready, Select) {
+         "dijit/form/FilteringSelect",
+         "dijit/form/ComboBox",
+         "dojo/store/Memory"
+], function (ready, Select, Memory) {
 
     //-- Initial startup
     ready(function() {
         BuildDataStores();
         InitEmployeeSelector();
-        InitializeEvents();
     });
     
     //-- Build Data Stores
@@ -47,34 +48,34 @@ require(["dojo/ready",
         if (resp != '/n') {
             i = 0;
             tokens = resp.split("\n");
-            data_list = new Array();
+            DataStore_Employees = new dojo.store.Memory({});    
             while (i<tokens.length) {
                 if (tokens[i].length > 0)
-                    data_list.push({'name':tokens[i]});
+                    DataStore_Employees.put({name:tokens[i]});
                 i++;
-            }
-            DataStore_Employees = new dojox.data.KeyValueStore({data: data_list});
+            }            
         }
     }
 
-    //-- Update the table with live information from the database
+    //-- Initialize the target employee selector 
     function InitEmployeeSelector() {            
-        var s = new dijit.form.FilteringSelect({
-            store: DataStore_Employees
-        }, "target_select");
-        s.startup();                
-    }
-    
-    //-- Update the table with live information from the database
-    function InitializeEvents() {            
-        dojo.connect(dijit.byId("target_select"),"onChange",function(){
-            var x = dijit.byId("target_select");
-            var resp = ajax('./cgi/jsIface.py?op=getELevel&name=' + x.getDisplayedValue());
-            if (resp != '\n') {   
-                dojo.byId("target_title").innerHTML = resp;
+        var s = new dijit.form.ComboBox({
+            id: "target_select",
+            store: DataStore_Employees,
+            onChange: function(target){
+                var resp = ajax('./cgi/jsIface.py?op=getEmployeeInfoByName&name=' + target);
+                if (resp != '\n') {   
+                    var tokens = resp.split(",");
+                    dojo.byId("target_title").innerHTML = tokens[2];
+                    resp = ajax('./cgi/jsIface.py?op=getEmployeeInfoByKey&key=' + tokens[3]);
+                    if (resp != '\n') {
+                        var tokens = resp.split(",");
+                        dojo.byId("target_super").innerHTML = tokens[0];
+                    }
+                }
             }
-        })
+        }, "target_select");      
     }
-    
+
 });
 
