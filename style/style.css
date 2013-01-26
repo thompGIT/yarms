@@ -18,7 +18,7 @@ html, body {height:100%; margin:0; overflow:hidden; padding:0;}
 
 #evaluationIdInfo {height:100px; margin:10px; }
 #employeeInfo {height:100%; width:50%; float:left;}
-#reviewerInfo {height:100%; width:50%; float:left; }
+#reviewerInfo {height:100%; width:50%; float:left;}
 
 .infoTitle   {height: 20px; width:100%;  text-align:center; font-weight:bold; font-size: 15px;}
 .infoLabel   {height: 20px; width:100px; text-align:right;  font-weight:bold; float:left;}

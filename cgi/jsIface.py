@@ -35,3 +35,4 @@ if 'op' in form:
 if op == 'getEmployeeNames':        db.getEmployeeNames()
 if op == 'getEmployeeInfoByName':   db.getEmployeeInfoByName(form['name'].value)
 if op == 'getEmployeeInfoByKey':    db.getEmployeeInfoByKey(form['key'].value)
+if op == 'getFeedbackQuestions':    db.getFeedbackQuestions()

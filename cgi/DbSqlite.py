@@ -43,13 +43,23 @@ class DbSqlite():
                 result += str(x[i]) + ','
         result = result[:-1]
         print result
+                
+    def getFeedbackQuestions(self):
+        self.c.execute('SELECT key,text from categories;')        
+        result = ''
+        for x in self.c.fetchall():
+            for i in range(len(x)):
+                result += str(x[i]) + '`'
+            result = result[:-1] + '\n'            
+        if result != '':
+            result = result[:-1]
+        print result       
+        
     
     #--------------------------------------------------------------------------
     # setup
     #--------------------------------------------------------------------------
     def __init__(self, path):
-
-#        print 'Attaching to database at [' + path + ']'
 
         # Connect to the database (assumes it already exists!)
         if ( os.path.exists(path) ):
