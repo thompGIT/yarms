@@ -26,9 +26,23 @@ class DbSqlite():
         result = result[:-1]
         print result
                 
-    def getELevel(self,employee):
-        self.c.execute('SELECT title from employees where name=?', (employee,))
-        print self.c.fetchone()[0]        
+    def getEmployeeInfoByName(self,name):
+        self.c.execute('SELECT name,id,title,supervisor_key from employees where name=?', (name,))
+        result = ''
+        for x in self.c.fetchall():
+            for i in range(len(x)):
+                result += str(x[i]) + ','
+        result = result[:-1]
+        print result
+                
+    def getEmployeeInfoByKey(self,key):
+        self.c.execute('SELECT name,id,title,supervisor_key from employees where key=?', (key,))        
+        result = ''
+        for x in self.c.fetchall():
+            for i in range(len(x)):
+                result += str(x[i]) + ','
+        result = result[:-1]
+        print result
     
     #--------------------------------------------------------------------------
     # setup
