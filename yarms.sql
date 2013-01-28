@@ -1,6 +1,6 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE comments (key INTEGER PRIMARY KEY, category_id NUMERIC, comment TEXT);
+CREATE TABLE comments (key INTEGER PRIMARY KEY, category_key NUMERIC, comment TEXT);
 CREATE TABLE categories (key INTEGER PRIMARY KEY, text TEXT);
 INSERT INTO "categories" VALUES(1,'In your opinion, in what ways does the employee excel?');
 INSERT INTO "categories" VALUES(2,'In what ways has the employee gone above and beyond their regular call of duty?						');
