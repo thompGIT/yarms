@@ -24,6 +24,8 @@ html, body {height:100%; margin:0; overflow:hidden; padding:0;}
 .infoLabel   {height: 20px; width:100px; text-align:right;  font-weight:bold; float:left;}
 .infoElement {height: 20px; width:275px; float:left;}
 
-.feedbackLabel {height: 20px; margin-top:20px; text-sub; width:100%; font-weight:bold; }
-.feedbackInputPanel {height: 70px; width:100%; font-weight:bold; margin-left:20px; }
-.feedbackInput {height: 70px; width:95%; }
+.feedbackLabel {text-sub; width:100%; font-weight:bold; }
+.feedbackInputPanel {height: 70px; width:95%; margin-bottom:20px; font-weight:bold; margin-left:20px; }
+.feedbackInput {height: 70px; width:100%; }
+
+.submitPanel {height: 35px; width:130px; margin-top:40px; font-weight:bold; margin-left:640px; }

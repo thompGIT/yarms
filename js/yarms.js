@@ -31,14 +31,17 @@ require(["dojo/ready",
          "dojox/grid/DataGrid", 
          "dijit/form/FilteringSelect",
          "dijit/form/ComboBox",
-         "dojo/store/Memory"
-], function (ready, Select, Memory) {
+         "dojo/store/Memory",
+         "dijit/form/SimpleTextarea",
+         "dojox/form/BusyButton"
+], function (ready, Select, Memory, SimpleTextarea) {
 
     //-- Initial startup
     ready(function() {
         BuildDataStores();
         InitCategoryLabels();
         InitEmployeeSelector();
+        InitFeebackAreas();
     });
            
     //-- Build Data Stores
@@ -83,7 +86,9 @@ require(["dojo/ready",
         dojo.byId("feedbackLabel_6").innerHTML = DataStore_FeedbackCategories.get(6).text;
     }
     
+    //-- Initialize all employee selection boxes
     function InitEmployeeSelector() {      
+    
         //-- Initialize the target employee selector       
         var empSelect = new dijit.form.ComboBox({
             id: "target_select",
@@ -120,6 +125,28 @@ require(["dojo/ready",
             }
         }, "reviewer_select");    
     }
-
+    
+    //-- Initialize Feeback Input Areas
+    function InitFeebackAreas() {
+    
+        //-- Text input area
+        for (var i=1; i<=6; i++)
+        {
+            var inputName = 'feedbackInput_' + i.toString();
+            var textarea = new dijit.form.SimpleTextarea({
+                name: inputName,
+                style: 'width:100%; height:95%;'
+            }, inputName);
+        }
+        
+        //-- Submit button
+        var button = new dojox.form.BusyButton({
+            id: 'formSubmitButton',
+            busyLabel: 'Submitting...',
+            label: 'Submit Feedback',
+            timeout: 3000
+        }, 'formSubmitButton');
+    }
+    
 });
 
