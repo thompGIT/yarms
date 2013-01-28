@@ -24,6 +24,8 @@ function ajax(url) {
 ******************************************************************************/
 var DataStore_Employees;
 var DataStore_FeedbackCategories;
+var Target_key = -1;
+var Provider_key = -1;
 
 require(["dojo/ready",
          "dojo/data/ItemFileReadStore",
@@ -97,6 +99,7 @@ require(["dojo/ready",
                 var resp = ajax('./cgi/jsIface.py?op=getEmployeeInfoByName&name=' + target);
                 if (resp != '\n') {   
                     var tokens = resp.split(",");
+                    Target_key = tokens[0];
                     dojo.byId("target_title").innerHTML = tokens[2];
                     resp = ajax('./cgi/jsIface.py?op=getEmployeeInfoByKey&key=' + tokens[3]);
                     if (resp != '\n') {
@@ -115,6 +118,7 @@ require(["dojo/ready",
                 var resp = ajax('./cgi/jsIface.py?op=getEmployeeInfoByName&name=' + target);
                 if (resp != '\n') {   
                     var tokens = resp.split(",");
+                    Provider_key = tokens[0];
                     dojo.byId("reviewer_title").innerHTML = tokens[2];
                     resp = ajax('./cgi/jsIface.py?op=getEmployeeInfoByKey&key=' + tokens[3]);
                     if (resp != '\n') {
@@ -130,8 +134,7 @@ require(["dojo/ready",
     function InitFeebackAreas() {
     
         //-- Text input area
-        for (var i=1; i<=6; i++)
-        {
+        for (var i=1; i<=6; i++) {
             var inputName = 'feedbackInput_' + i.toString();
             var textarea = new dijit.form.SimpleTextarea({
                 name: inputName,
@@ -144,9 +147,21 @@ require(["dojo/ready",
             id: 'formSubmitButton',
             busyLabel: 'Submitting...',
             label: 'Submit Feedback',
-            timeout: 3000
+            timeout: 2000,
+            onClick: SubmitFeedback
         }, 'formSubmitButton');
     }
     
+    //-- Submit feedback
+    function SubmitFeedback() {        
+        for (var i=1; i<=6; i++) {                                     
+            var cmd = './cgi/jsIface.py?op=submitFeedback';
+            cmd += '&target_key='   + Target_key;
+            cmd += '&provider_key=' + Provider_key;
+            cmd += '&category_key=' + i.toString();
+            cmd += '&comment='      + dijit.byId('feedbackInput_' + i.toString()).get('value');
+            ajax(cmd);
+        }               
+    }
 });
 

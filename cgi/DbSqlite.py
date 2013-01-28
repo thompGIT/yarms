@@ -5,6 +5,7 @@
 import sqlite3
 import string
 import time
+import datetime
 import os
 import sys
 
@@ -27,7 +28,7 @@ class DbSqlite():
         print result
                 
     def getEmployeeInfoByName(self,name):
-        self.c.execute('SELECT name,id,title,supervisor_key from employees where name=?', (name,))
+        self.c.execute('SELECT key,id,title,supervisor_key from employees where name=?', (name,))
         result = ''
         for x in self.c.fetchall():
             for i in range(len(x)):
@@ -54,6 +55,12 @@ class DbSqlite():
         if result != '':
             result = result[:-1]
         print result       
+                
+    def submitFeedback(self,target_key,provider_key,category_key,comment):    
+        date = str(datetime.datetime.now())     
+        self.c.execute('INSERT into comments (category_key,comment) VALUES (?,?);', (category_key,comment))
+        self.c.execute('INSERT into feedback (date,provider_key,target_key,comment_key) VALUES (?,?,?,?);', (date,provider_key,target_key,self.c.lastrowid))
+        self.conn.commit()
         
     
     #--------------------------------------------------------------------------
