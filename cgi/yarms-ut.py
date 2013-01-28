@@ -19,6 +19,7 @@ if not ((num_args == 2) or (num_args == 3)):
     print 'Usage: ' + str(sys.argv[0]) + ' <command> [parameter]'
     print ' Commands: genEmployees [count]'
     print '           getEmployeeNames'
+    print '           genEmployeeReport'
     sys.exit(1)
 
 if sys.argv[1] == 'getEmployeeNames':
@@ -44,9 +45,14 @@ if sys.argv[1] == 'genEmployees':
         name = random.choice(firstNames) + ' ' + random.choice(middleNames) + ' ' + random.choice(lastNames)
         empId = 'SIG-' + str(i)
         title = 'E0' + str(random.randint(1,6))
-        supervisor = random.randint(1,num_employees-1) % 5
+        supervisor = (random.randint(1,num_employees-1) % 5) + 1
         print '[' + title + '] [' + empId + '] [' + str(supervisor) + '] ' + name
         db.addEmployee(name,empId,title,supervisor)
         
 
+if sys.argv[1] == 'genEmployeeReport':
+    if num_args != 3:
+        print 'Usage: ' + str(sys.argv[0]) + ' genReport [employee_name]'
+        sys.exit(1)
+    db.genEmployeeReportByName(sys.argv[2])
 

@@ -61,7 +61,29 @@ class DbSqlite():
         self.c.execute('INSERT into comments (category_key,comment) VALUES (?,?);', (category_key,comment))
         self.c.execute('INSERT into feedback (date,provider_key,target_key,comment_key) VALUES (?,?,?,?);', (date,provider_key,target_key,self.c.lastrowid))
         self.conn.commit()
-        
+    
+    def genEmployeeReportByName(self,name):                
+        self.c.execute('SELECT key,id,title,supervisor_key from employees where name=?', (name,))
+        t_result = self.c.fetchone()
+        target_key  = t_result[0]
+        t_id        = t_result[1]
+        t_title     = t_result[2]
+        t_super_key = t_result[3]        
+        self.c.execute('SELECT name from employees where key=?', (t_super_key,))  
+        t_super = self.c.fetchone()[0]        
+        self.c.execute('select feedback.date, employees.name, comments.comment from feedback,comments,employees where feedback.target_key = ' + str(target_key) + ' and feedback.comment_key = comments.key and feedback.provider_key = employees.key;')
+        report = '=' * 80 + '\n'
+        report += 'Employee Report:\n'
+        report += '       Name: ' + name + '\n'
+        report += '     Emp ID: ' + t_id + '\n'
+        report += '      Title: ' + t_title + '\n'
+        report += ' Supervisor: ' + t_super + '\n'
+        report += '=' * 80 + '\n'
+        for x in self.c.fetchall():
+            report += x[0][0:10] + '\t' + x[1] + '\t' + x[2] + '\n'
+        report = report[:-1] 
+        print report
+    
     
     #--------------------------------------------------------------------------
     # setup

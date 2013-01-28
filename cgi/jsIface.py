@@ -37,3 +37,5 @@ if op == 'getEmployeeInfoByName':   db.getEmployeeInfoByName(form['name'].value)
 if op == 'getEmployeeInfoByKey':    db.getEmployeeInfoByKey(form['key'].value)
 if op == 'getFeedbackQuestions':    db.getFeedbackQuestions()
 if op == 'submitFeedback':          db.submitFeedback(form['target_key'].value,form['provider_key'].value,form['category_key'].value,form['comment'].value)
+
+if op == 'genEmployeeReportByName': db.genEmployeeReportByName(form['name'].value)
